@@ -1,0 +1,40 @@
+body { background-color: #0A2540; color: #d4e4fa; }
+        .micro-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .card-surface {
+            background-color: #12314E;
+            border: 1px solid #1E4369;
+            border-radius: 0.5rem;
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #29B6F6;
+            color: #0c3254;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary {
+            border: 1px solid #29B6F6;
+            color: #29B6F6;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-secondary:hover { background-color: rgba(41, 182, 246, 0.1); }
+        .success-text { color: #4ade80; }
+        .modal-overlay {
+            background-color: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+        }
+        .modal-overlay.active { display: flex; }

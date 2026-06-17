@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jill Procurement - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-surface-variant": "#bdc8d1",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary": "#0c3254",
+                        "surface-container": "#122131",
+                        "outline": "#87929b",
+                        "inverse-surface": "#d4e4fa",
+                        "secondary": "#a9c9f3",
+                        "surface-tint": "#81cfff",
+                        "on-tertiary": "#462a00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#c6e7ff",
+                        "inverse-primary": "#00658d",
+                        "primary-fixed-dim": "#81cfff",
+                        "on-secondary-container": "#9bbbe4",
+                        "surface": "#051424",
+                        "on-primary": "#00344b",
+                        "on-secondary-fixed-variant": "#28496c",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-variant": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "background": "#051424",
+                        "primary": "#81cfff",
+                        "tertiary-fixed-dim": "#ffb95a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-primary-fixed": "#001e2d",
+                        "on-primary-fixed-variant": "#004c6b",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#001d36",
+                        "primary-container": "#29b6f6",
+                        "tertiary": "#ffb95a",
+                        "on-tertiary-container": "#5a3800",
+                        "secondary-container": "#2a4b6e",
+                        "on-primary-container": "#004460",
+                        "inverse-on-surface": "#233143",
+                        "secondary-fixed-dim": "#a9c9f3",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "on-background": "#d4e4fa",
+                        "outline-variant": "#3e4850",
+                        "tertiary-container": "#e99a19",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "section-label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "metric-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "section-label": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Pattern Overlay */
+        .bg-pattern-microgrid {
+            background-image: 
+                linear-gradient(to right, rgba(135, 146, 155, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(135, 146, 155, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051424;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273647;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3e4850;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar (Predicted) -->
+<nav class="hidden md:flex flex-col h-full overflow-y-auto fixed left-0 top-0 w-[240px] bg-surface-container-low border-r border-outline-variant z-50">
+<!-- Brand Header -->
+<div class="px-margin py-margin border-b border-outline-variant/30 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Jill</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">AI-Assisted Expert</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col flex-grow py-4">
+<li>
+<a class="flex items-center text-primary font-bold border-l-4 border-primary bg-secondary-container/20 px-4 py-3 cursor-pointer transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="add_circle">add_circle</span>
+<span>New Request</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="request_quote">request_quote</span>
+<span>Active RFQs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="compare_arrows">compare_arrows</span>
+<span>Quote Comparisons</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="fact_check">fact_check</span>
+<span>Approvals</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="inventory_2">inventory_2</span>
+<span>Vendors</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="history">history</span>
+<span>Activity Log</span>
+</a>
+</li>
+</ul>
+<!-- User Footer -->
+<div class="px-4 py-margin mt-auto border-t border-outline-variant/30">
+<button class="flex items-center w-full gap-3 hover:bg-surface-container-high p-2 rounded-lg transition-colors text-left">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTCi6HakWLLYcEO8QlZxxZpZN4YtWaGBkTlqvUT2tbOssovWlbXFNyXTa49alofGo_gpOyaC05LxBcDlsr0_mVTjRuEXER3crh8_lgZxnOI8Y6-5P3rjSQZ3A0OIx5NpU0T7UJ_9mMzoWuBEd7lrdruXohDa908t-TuHmu7BthNup-6jWltHJBPfiLI2rzgue6N2cKEEP3AfosPBw2lthZ8HFF5CB3mspcHAMOyTdlzwRe0GW9DwR52D6LXdr_JRh4_-FwkXQ4h9Id"/>
+<div class="flex-grow overflow-hidden">
+<p class="font-label-sm text-label-sm text-on-surface truncate">Buyer Admin</p>
+<p class="text-[10px] text-on-surface-variant truncate">Global Procurement</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">unfold_more</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<div class="flex-1 flex flex-col md:ml-[240px] h-full relative">
+<!-- TopNavBar (Predicted) -->
+<header class="flex justify-between items-center px-gutter w-full h-16 bg-surface-dim border-b border-outline-variant z-40 sticky top-0 bg-pattern-microgrid">
+<div class="flex items-center gap-4 flex-1">
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center text-on-surface-variant gap-2 text-sm">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span class="text-outline">/</span>
+<span class="text-on-surface font-medium">Command Center</span>
+</div>
+</div>
+<!-- Global Search - Center -->
+<div class="hidden lg:flex flex-1 max-w-lg mx-4">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-[#081B2E] border border-[#1E4369] rounded-full py-1.5 pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search RFQs, Vendors, or ASINs..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
+<kbd class="text-[10px] bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded border border-outline-variant/50">⌘</kbd>
+<kbd class="text-[10px] bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded border border-outline-variant/50">K</kbd>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-1 justify-end">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant relative active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content -->
+<main class="flex-1 overflow-y-auto p-margin pb-32">
+<div class="max-w-7xl mx-auto space-y-margin">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Dashboard</h2>
+<p class="text-on-surface-variant mt-1">Real-time procurement insights and AI agent activity.</p>
+</div>
+<button class="bg-primary-container hover:bg-primary-container/90 text-[#00344b] px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        New RFQ
+                    </button>
+</div>
+<!-- Top Row: Metrics Cards (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-[#12314E] border border-[#1E4369] rounded-lg p-container-padding relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">savings</span>
+</div>
+<h3 class="font-section-label text-section-label text-on-surface-variant uppercase mb-2">Annual Savings Generated</h3>
+<div class="flex items-end justify-between mt-4">
+<div class="font-metric-lg text-metric-lg text-primary">$3.5M</div>
+<div class="flex items-center text-[#4ade80] bg-[#4ade80]/10 px-2 py-1 rounded text-xs font-medium mb-1 border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +14.2%
+                            </div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-[#12314E] border border-[#1E4369] rounded-lg p-container-padding relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">timer</span>
+</div>
+<h3 class="font-section-label text-section-label text-on-surface-variant uppercase mb-2">Cycle-Time Reduction</h3>
+<div class="flex items-end justify-between mt-4">
+<div class="font-metric-lg text-metric-lg text-primary">80%</div>
+<div class="flex items-center text-[#4ade80] bg-[#4ade80]/10 px-2 py-1 rounded text-xs font-medium mb-1 border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +5.1%
+                            </div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-[#12314E] border border-[#1E4369] rounded-lg p-container-padding relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">more_time</span>
+</div>
+<h3 class="font-section-label text-section-label text-on-surface-variant uppercase mb-2">Hours Recovered</h3>
+<div class="flex items-end justify-between mt-4">
+<div class="font-metric-lg text-metric-lg text-primary">58k</div>
+<div class="flex items-center text-[#4ade80] bg-[#4ade80]/10 px-2 py-1 rounded text-xs font-medium mb-1 border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +2.4k mo
+                            </div>
+</div>
+</div>
+</div>
+<!-- Middle Row: Asymmetric Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-margin">
+<!-- Left: Active RFQs Table (Wider) -->
+<div class="lg:col-span-2 bg-[#12314E] border border-[#1E4369] rounded-lg flex flex-col h-[400px]">
+<div class="p-4 border-b border-[#1E4369] flex justify-between items-center bg-surface-container-high/50 rounded-t-lg">
+<h3 class="font-headline-md text-base font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">table_rows</span>
+                                Active RFQs
+                            </h3>
+<button class="text-primary hover:text-primary-fixed text-sm font-medium flex items-center gap-1 transition-colors">
+                                View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-[#12314E] z-10 shadow-[0_1px_0_0_#1E4369]">
+<tr>
+<th class="font-section-label text-section-label text-on-surface-variant py-3 px-4 font-semibold">RFQ ID</th>
+<th class="font-section-label text-section-label text-on-surface-variant py-3 px-4 font-semibold">TITLE</th>
+<th class="font-section-label text-section-label text-on-surface-variant py-3 px-4 font-semibold">STAGE</th>
+<th class="font-section-label text-section-label text-on-surface-variant py-3 px-4 font-semibold">VENDORS</th>
+<th class="font-section-label text-section-label text-on-surface-variant py-3 px-4 font-semibold text-right">BEST QUOTE</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-[#1E4369]">
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1042</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Laptops Q3 Refresh</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container/30">
+                                                Awaiting Approval
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">3 / 5</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface group-hover:text-primary transition-colors">$124,500</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1041</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Cloud Hosting Svcs</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-primary-container/20 text-primary border border-primary/30">
+                                                Quotes In
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">4 / 4</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface group-hover:text-primary transition-colors">$89,200/mo</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1040</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Office Furniture SF</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-surface-variant text-on-surface border border-outline-variant">
+                                                Sent
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">1 / 6</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface-variant italic">Pending</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1039</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Marketing Agency Retainer</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-surface-container-lowest text-outline border border-outline-variant border-dashed">
+                                                Drafting
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">-</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface-variant italic">-</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1038</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Network Switches</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container/30">
+                                                Awaiting Approval
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">2 / 3</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface group-hover:text-primary transition-colors">$45,800</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-mono text-xs text-secondary-fixed">RFQ-1037</td>
+<td class="py-3 px-4 text-on-surface font-medium truncate max-w-[150px]">Legal Counsel (IP)</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-primary-container/20 text-primary border border-primary/30">
+                                                Quotes In
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">3 / 3</td>
+<td class="py-3 px-4 text-right font-medium text-on-surface group-hover:text-primary transition-colors">$350/hr</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right: Jill's Activity Feed (Narrower) -->
+<div class="bg-[#12314E] border border-[#1E4369] rounded-lg flex flex-col h-[400px]">
+<div class="p-4 border-b border-[#1E4369] flex justify-between items-center bg-surface-container-high/50 rounded-t-lg">
+<h3 class="font-headline-md text-base font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">smart_toy</span>
+                                Jill's Activity
+                            </h3>
+<div class="flex items-center gap-1.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs text-on-surface-variant font-medium">Live</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-5">
+<!-- Feed Item -->
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 bottom-[-20px] w-px bg-[#1E4369] last:hidden"></div>
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-primary ring-4 ring-[#12314E]"></div>
+<div class="mb-1 flex items-center gap-2">
+<div class="w-5 h-5 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[12px] text-on-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="text-xs text-on-surface-variant font-mono">2 mins ago</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">Normalized 3 quotes for <a class="text-primary hover:underline" href="#">RFQ-1042</a>. Found implicit hardware cost discrepancy.</p>
+</div>
+<!-- Feed Item -->
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 bottom-[-20px] w-px bg-[#1E4369] last:hidden"></div>
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-outline ring-4 ring-[#12314E]"></div>
+<div class="mb-1 flex items-center gap-2">
+<div class="w-5 h-5 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[12px] text-on-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="text-xs text-on-surface-variant font-mono">14 mins ago</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">Drafted comparison matrix for <a class="text-primary hover:underline" href="#">RFQ-1041</a> and flagged Vendor C for compliance risk.</p>
+</div>
+<!-- Feed Item -->
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 bottom-[-20px] w-px bg-[#1E4369] last:hidden"></div>
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-outline ring-4 ring-[#12314E]"></div>
+<div class="mb-1 flex items-center gap-2">
+<div class="w-5 h-5 rounded bg-surface-variant border border-outline-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[12px] text-on-surface">mark_email_read</span>
+</div>
+<span class="text-xs text-on-surface-variant font-mono">45 mins ago</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">Sent automated follow-up to 5 vendors regarding pending submissions for <a class="text-primary hover:underline" href="#">RFQ-1040</a>.</p>
+</div>
+<!-- Feed Item -->
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 bottom-[-20px] w-px bg-[#1E4369] hidden"></div>
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-outline ring-4 ring-[#12314E]"></div>
+<div class="mb-1 flex items-center gap-2">
+<div class="w-5 h-5 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[12px] text-on-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="text-xs text-on-surface-variant font-mono">2 hrs ago</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">Generated initial RFP draft for 'Network Switches' based on historical data.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom: Pending Approvals Strip -->
+<div>
+<div class="flex items-center gap-2 mb-4 mt-6">
+<span class="material-symbols-outlined text-tertiary text-[20px]">assignment_turned_in</span>
+<h3 class="font-headline-md text-base font-semibold text-on-surface">Pending Your Approval</h3>
+<span class="bg-tertiary text-on-tertiary text-[10px] font-bold px-2 py-0.5 rounded-full ml-2">3 Tasks</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Approval Card 1 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-lg p-4 hover:border-[#1E4369] hover:bg-[#12314E] transition-all group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs text-secondary-fixed">RFQ-1042</span>
+<span class="text-xs text-on-surface-variant">Due Today</span>
+</div>
+<h4 class="font-medium text-sm text-on-surface mb-1 truncate">Laptops Q3 Refresh - Award Recommendation</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">Jill recommends awarding to Dell Inc. based on lowest total cost of ownership and 100% SLA compliance.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary text-xs font-medium py-1.5 rounded hover:bg-primary-fixed transition-colors">Approve</button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface text-xs font-medium py-1.5 rounded hover:bg-surface-variant transition-colors">Review Matrix</button>
+</div>
+</div>
+<!-- Approval Card 2 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-lg p-4 hover:border-[#1E4369] hover:bg-[#12314E] transition-all group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs text-secondary-fixed">RFQ-1038</span>
+<span class="text-xs text-on-surface-variant">Due Tomorrow</span>
+</div>
+<h4 class="font-medium text-sm text-on-surface mb-1 truncate">Network Switches - Vendor Clarification</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">Cisco Systems requested extension on submission deadline. Jill proposes granting 48hrs.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary text-xs font-medium py-1.5 rounded hover:bg-primary-fixed transition-colors">Approve Ext.</button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface text-xs font-medium py-1.5 rounded hover:bg-surface-variant transition-colors">View Details</button>
+</div>
+</div>
+<!-- Approval Card 3 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-lg p-4 hover:border-[#1E4369] hover:bg-[#12314E] transition-all group border-l-2 border-l-tertiary">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs text-secondary-fixed">SYS-ALERT</span>
+<span class="text-xs text-tertiary font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">warning</span> High Priority</span>
+</div>
+<h4 class="font-medium text-sm text-on-surface mb-1 truncate">Budget Threshold Warning</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">Q3 IT Hardware spend is projected to exceed budget by 4% based on active RFQ estimates.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface text-xs font-medium py-1.5 rounded hover:bg-surface-variant transition-colors">Review Forecast</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

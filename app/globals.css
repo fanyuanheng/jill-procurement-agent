@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Stitch Design System: Jill, project 13204685104123019449. */
+  --color-background: #051424;
+  --color-surface: #051424;
+  --color-surface-dim: #051424;
+  --color-surface-bright: #2c3a4c;
+  --color-surface-lowest: #010f1f;
+  --color-surface-low: #0d1c2d;
+  --color-surface-container: #122131;
+  --color-surface-high: #1c2b3c;
+  --color-surface-highest: #273647;
+  --color-surface-variant: #273647;
+  --color-primary: #81cfff;
+  --color-primary-container: #29b6f6;
+  --color-on-primary: #00344b;
+  --color-secondary: #a9c9f3;
+  --color-secondary-container: #2a4b6e;
+  --color-tertiary: #ffb95a;
+  --color-tertiary-container: #e99a19;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-outline: #87929b;
+  --color-outline-variant: #3e4850;
+  --color-text: #ffffff;
+  --color-text-dim: #d4e4fa;
+  --color-text-muted: #94a3b8;
+  --color-card: #12314e;
+  --color-card-border: #1e4369;
+  --color-input: #081b2e;
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --spacing-unit: 4px;
+  --spacing-gutter: 16px;
+  --spacing-margin: 24px;
+  --spacing-card: 20px;
+  --sidebar-width: 240px;
+  --topbar-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text-dim);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+::selection {
+  background: rgba(41, 182, 246, 0.35);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-container);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

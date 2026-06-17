@@ -1,0 +1,10 @@
+body { background-color: #0A2540; color: #d4e4fa; }
+        .bg-level-1 { background-color: #12314E; border: 1px solid #1E4369; }
+        .bg-level-2 { background-color: #1A3F64; box-shadow: 0px 8px 24px rgba(0,0,0,0.4); }
+        .input-dark { background-color: #081B2E; border: 1px solid #1E4369; }
+        .input-dark:focus { outline: none; border-color: #29B6F6; box-shadow: 0 0 0 1px #29B6F6; }
+        .text-cyan { color: #29B6F6; }
+        .bg-cyan { background-color: #29B6F6; color: #00344b; }
+        .border-cyan { border-color: #29B6F6; }
+        .text-amber { color: #ffb95a; }
+        .bg-amber-muted { background-color: rgba(255, 185, 90, 0.1); border: 1px solid #ffb95a; }

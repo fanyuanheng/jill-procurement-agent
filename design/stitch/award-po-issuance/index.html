@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Award &amp; Issue PO - Jill Procurement</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-surface-variant": "#bdc8d1",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary": "#0c3254",
+                        "surface-container": "#122131",
+                        "outline": "#87929b",
+                        "inverse-surface": "#d4e4fa",
+                        "secondary": "#a9c9f3",
+                        "surface-tint": "#81cfff",
+                        "on-tertiary": "#462a00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#c6e7ff",
+                        "inverse-primary": "#00658d",
+                        "primary-fixed-dim": "#81cfff",
+                        "on-secondary-container": "#9bbbe4",
+                        "surface": "#051424",
+                        "on-primary": "#00344b",
+                        "on-secondary-fixed-variant": "#28496c",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-variant": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "background": "#051424",
+                        "primary": "#81cfff",
+                        "tertiary-fixed-dim": "#ffb95a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-primary-fixed": "#001e2d",
+                        "on-primary-fixed-variant": "#004c6b",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#001d36",
+                        "primary-container": "#29b6f6",
+                        "tertiary": "#ffb95a",
+                        "on-tertiary-container": "#5a3800",
+                        "secondary-container": "#2a4b6e",
+                        "on-primary-container": "#004460",
+                        "inverse-on-surface": "#233143",
+                        "secondary-fixed-dim": "#a9c9f3",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "on-background": "#d4e4fa",
+                        "outline-variant": "#3e4850",
+                        "tertiary-container": "#e99a19",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "success": "#4ade80"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        unit: "4px",
+                        gutter: "16px",
+                        "container-padding": "20px",
+                        margin: "24px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "section-label": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+                        "metric-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "section-label": ["11px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0A2540; color: #d4e4fa; }
+        .micro-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .card-surface {
+            background-color: #12314E;
+            border: 1px solid #1E4369;
+            border-radius: 0.5rem;
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #29B6F6;
+            color: #0c3254;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary {
+            border: 1px solid #29B6F6;
+            color: #29B6F6;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-secondary:hover { background-color: rgba(41, 182, 246, 0.1); }
+        .success-text { color: #4ade80; }
+        .modal-overlay {
+            background-color: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+        }
+        .modal-overlay.active { display: flex; }
+    </style>
+</head>
+<body class="font-body-md text-body-md bg-background text-on-background m-0 p-0 overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant flex flex-col h-full overflow-y-auto z-50">
+<div class="p-gutter flex items-center gap-3 border-b border-outline-variant/30">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden">
+<img alt="Jill" class="w-full h-full object-cover" data-alt="A professional corporate headshot avatar of a confident AI assistant named Jill, set against a bright cyan background. The overall aesthetic is sleek, corporate, and trustworthy, blending seamlessly into a high-tech dark mode dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhyBtsdl1m7R_hxf2Y039WqoEdD2BaYwNWMLl3DSWBD_OYbJCJIo3Yh4hRFXzaMEQo56Rzp-_UiVF9nv2_2Rz7Boed1wu6J7ShLCd95ac49H4VxOPgYlDApxfOSZi45p_CxRlC6xAC6DpHuaH-g2xAOQwQBBAAzx0bNQv7oas67GsqZA6AmuGoJ7woPNmnFXzKV99nT3A3PEXn_wEVEfj67lmfZcQo-yZmvUHUv-7Gs_ZE6L5RO_VI1BJJVw5Hh5KOdsUVWlKgi5oX"/>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary text-base leading-tight">Jill</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">AI-Assisted Expert</div>
+</div>
+</div>
+<div class="flex-1 py-4 flex flex-col gap-1">
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+                New Request
+            </a>
+<a class="flex items-center text-primary font-bold border-l-4 border-primary bg-secondary-container/20 px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">request_quote</span>
+                Active RFQs
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">compare_arrows</span>
+                Quote Comparisons
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+                Approvals
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Vendors
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all gap-3" href="#">
+<span class="material-symbols-outlined">history</span>
+                Activity Log
+            </a>
+</div>
+</nav>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-dim dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center px-gutter ml-[240px] z-40 micro-grid">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-black text-primary tracking-tight">Jill Procurement</div>
+</div>
+<!-- Search Bar (on_left configuration relative to actions) -->
+<div class="flex-1 max-w-md mx-8 relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-[#081B2E] border border-outline-variant rounded-md py-1.5 pl-9 pr-3 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant/50" placeholder="Search POs, vendors, requests..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary-container rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant ml-2">
+<img alt="Jill Avatar" class="w-full h-full object-cover" data-alt="A subtle, dark-themed generic user profile avatar image, fitting perfectly into a high-end corporate dashboard. The avatar should use deep navy blues and soft white accents, maintaining a minimal and professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmtLawA3jcq26yYMpvVb5NYUunpI1EGwSH_Fo4OjP07ovzD-ONElENN81KnutDEUgZzapUcqTeeGqOklSg8MPb4cEPE_PrYZ900wI6Xi1f_jLQF9PgwMR7AHZALRad4JPhBtG0wniwPMiFHdU48cIRT4w_KPcG4wBFmRMbnYOTjdz0eG-WooAl1BSxRe6TcVZO5t6Zl74oAEMbz6LJU8gT-95pwMRiceuJjNyA-STfvURJg0OKDnpx9DQdg870yG114nYdGnJgEvb_"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] mt-16 p-margin w-[calc(100%-240px)] flex flex-col gap-6 relative min-h-[calc(100vh-64px)] pb-24">
+<!-- Header & Stepper -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>RFQ-1029</span>
+<span class="mx-1">/</span>
+<span>Vendor Selection</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Award &amp; Issue PO</h1>
+</div>
+</div>
+<!-- 5-Step Stepper -->
+<div class="flex items-center w-full max-w-3xl mt-4">
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-6 h-6 rounded-full bg-success text-[#051424] flex items-center justify-center z-10 mb-2">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Request</span>
+<div class="absolute top-3 left-1/2 w-full h-[2px] bg-success"></div>
+</div>
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-6 h-6 rounded-full bg-success text-[#051424] flex items-center justify-center z-10 mb-2">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sourcing</span>
+<div class="absolute top-3 left-1/2 w-full h-[2px] bg-success"></div>
+</div>
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-6 h-6 rounded-full bg-success text-[#051424] flex items-center justify-center z-10 mb-2">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Comparison</span>
+<div class="absolute top-3 left-1/2 w-full h-[2px] bg-primary"></div>
+</div>
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-primary border-4 border-[#051424] text-[#051424] flex items-center justify-center z-10 mb-1 -mt-1 shadow-[0_0_0_1px_#81cfff]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Award</span>
+<div class="absolute top-3 left-1/2 w-full h-[2px] bg-surface-variant"></div>
+</div>
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center z-10 mb-2">
+<span class="font-label-sm text-label-sm">5</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fulfillment</span>
+</div>
+</div>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 flex-1">
+<!-- Left Column: Award Summary -->
+<div class="xl:col-span-7 flex flex-col gap-6">
+<div class="card-surface flex flex-col gap-6 relative overflow-hidden">
+<!-- Subtle gradient accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-section-label text-section-label text-on-surface-variant uppercase mb-2">Award Summary</h2>
+<div class="text-xl font-bold text-on-surface flex items-center gap-2">
+                                Vendor C (TechCorp Solutions)
+                                <span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Selected</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-section-label text-section-label text-on-surface-variant uppercase mb-1">Total PO Value</div>
+<div class="font-metric-lg text-metric-lg text-primary">$142,500</div>
+<div class="success-text text-sm font-medium flex items-center justify-end gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+                                $12.4K under budget
+                            </div>
+</div>
+</div>
+<hr class="border-t border-[#1E4369]"/>
+<div>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-3">Line-Item Recap</h3>
+<div class="bg-[#081B2E] border border-[#1E4369] rounded-md overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-surface-container-high border-b border-[#1E4369]">
+<tr>
+<th class="py-2 px-3 font-section-label text-section-label text-on-surface-variant">ITEM</th>
+<th class="py-2 px-3 font-section-label text-section-label text-on-surface-variant">QTY</th>
+<th class="py-2 px-3 font-section-label text-section-label text-on-surface-variant text-right">UNIT</th>
+<th class="py-2 px-3 font-section-label text-section-label text-on-surface-variant text-right">TOTAL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-[#1E4369]">
+<td class="py-2 px-3 text-on-surface">Enterprise Server Racks (42U)</td>
+<td class="py-2 px-3 text-on-surface-variant">10</td>
+<td class="py-2 px-3 text-on-surface-variant text-right">$4,500</td>
+<td class="py-2 px-3 text-on-surface font-medium text-right">$45,000</td>
+</tr>
+<tr class="border-b border-[#1E4369]">
+<td class="py-2 px-3 text-on-surface">High-Density Cooling Units</td>
+<td class="py-2 px-3 text-on-surface-variant">5</td>
+<td class="py-2 px-3 text-on-surface-variant text-right">$12,000</td>
+<td class="py-2 px-3 text-on-surface font-medium text-right">$60,000</td>
+</tr>
+<tr>
+<td class="py-2 px-3 text-on-surface">Installation &amp; Commissioning</td>
+<td class="py-2 px-3 text-on-surface-variant">1</td>
+<td class="py-2 px-3 text-on-surface-variant text-right">$37,500</td>
+<td class="py-2 px-3 text-on-surface font-medium text-right">$37,500</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex gap-8 mt-2">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant uppercase mb-1">Expected Delivery</div>
+<div class="flex items-center gap-2 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+                                Oct 15, 2023
+                            </div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant uppercase mb-1">Payment Terms</div>
+<div class="text-on-surface font-medium">Net 30</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant uppercase mb-1">Cost Center</div>
+<div class="text-on-surface font-medium">IT-INFRA-102</div>
+</div>
+</div>
+</div>
+<!-- Confirmation Block -->
+<div class="bg-primary-container/10 border border-primary/30 rounded-lg p-4 flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<div class="font-medium text-primary mb-1">Final Approval Action</div>
+<p class="text-sm text-on-surface-variant">Approving will auto-generate Purchase Order <strong>PO-2052</strong>, commit $142,500 against the IT-INFRA budget, and immediately dispatch formal notification to Vendor C via the B2B portal.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Compliance & Audit -->
+<div class="xl:col-span-5 flex flex-col gap-6">
+<div class="card-surface h-full flex flex-col">
+<h2 class="font-section-label text-section-label text-on-surface-variant uppercase mb-4">Compliance &amp; Audit Trail</h2>
+<!-- Checklist -->
+<div class="flex flex-col gap-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span class="text-sm text-on-surface">3+ competitive quotes received</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span class="text-sm text-on-surface">Vendor security assessment passed</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span class="text-sm text-on-surface">Within approved departmental budget</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span class="text-sm text-on-surface">Legal review of custom terms complete</span>
+</div>
+</div>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-4 border-b border-[#1E4369] pb-2">Activity Timeline</h3>
+<!-- Timeline -->
+<div class="relative pl-4 border-l-2 border-[#1E4369] flex flex-col gap-6 flex-1">
+<div class="relative">
+<div class="absolute -left-[23px] top-1 w-3 h-3 bg-surface border-2 border-primary rounded-full"></div>
+<div class="text-xs text-on-surface-variant mb-1">Today, 09:15 AM</div>
+<div class="text-sm font-medium text-on-surface">Recommendation generated by Jill AI</div>
+<div class="text-xs text-on-surface-variant mt-1">Vendor C scored 94/100 on technical fit and pricing.</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[23px] top-1 w-3 h-3 bg-surface border-2 border-surface-variant rounded-full"></div>
+<div class="text-xs text-on-surface-variant mb-1">Yesterday, 14:30 PM</div>
+<div class="text-sm text-on-surface">Quotes normalized for comparison</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[23px] top-1 w-3 h-3 bg-surface border-2 border-surface-variant rounded-full"></div>
+<div class="text-xs text-on-surface-variant mb-1">Sep 12, 11:00 AM</div>
+<div class="text-sm text-on-surface">RFQ closed, 4 responses received</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[23px] top-1 w-3 h-3 bg-surface border-2 border-surface-variant rounded-full"></div>
+<div class="text-xs text-on-surface-variant mb-1">Sep 01, 08:00 AM</div>
+<div class="text-sm text-on-surface">RFQ published to 8 approved vendors</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-0 right-0 w-[calc(100%-240px)] h-20 bg-surface-dim border-t border-outline-variant flex items-center justify-between px-margin z-40 shadow-[0_-4px_24px_rgba(0,0,0,0.2)]">
+<button class="btn-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">undo</span>
+            Send back to Jill
+        </button>
+<button class="btn-primary font-bold text-base px-8 py-3 flex items-center gap-2 shadow-[0_0_15px_rgba(41,182,246,0.3)]" onclick="document.getElementById('success-modal').classList.add('active')">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+            Approve &amp; Issue PO
+        </button>
+</div>
+<!-- Success Modal Overlay -->
+<div class="modal-overlay fixed inset-0 z-[100] items-center justify-center" id="success-modal">
+<div class="bg-[#12314E] border border-success/30 rounded-xl p-8 max-w-md w-full shadow-[0_12px_48px_rgba(0,0,0,0.6)] flex flex-col items-center text-center relative overflow-hidden">
+<!-- decorative background glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-success/20 blur-3xl rounded-full pointer-events-none"></div>
+<div class="w-16 h-16 bg-success/20 border-2 border-success text-success rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.2)]">
+<span class="material-symbols-outlined text-4xl">check</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">PO-2052 Issued</h2>
+<p class="text-on-surface-variant mb-8">The Purchase Order has been approved and Vendor C (TechCorp Solutions) has been notified by email.</p>
+<button class="btn-primary w-full py-3" onclick="document.getElementById('success-modal').classList.remove('active')">
+                Return to Dashboard
+            </button>
+</div>
+</div>
+</body></html>

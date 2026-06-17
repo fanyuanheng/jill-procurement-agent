@@ -1,0 +1,23 @@
+/* Pattern Overlay */
+        .bg-pattern-microgrid {
+            background-image: 
+                linear-gradient(to right, rgba(135, 146, 155, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(135, 146, 155, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051424;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273647;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3e4850;
+        }

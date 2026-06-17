@@ -1,0 +1,10 @@
+node_modules
+.next
+coverage
+test-results
+playwright-report
+.env
+.env.local
+data/*.json
+data/*.sqlite
+data/*.sqlite-*

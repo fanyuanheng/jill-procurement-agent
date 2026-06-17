@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jill Procurement - Supplier Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-surface-variant": "#bdc8d1",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary": "#0c3254",
+                        "surface-container": "#122131",
+                        "outline": "#87929b",
+                        "inverse-surface": "#d4e4fa",
+                        "secondary": "#a9c9f3",
+                        "surface-tint": "#81cfff",
+                        "on-tertiary": "#462a00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#c6e7ff",
+                        "inverse-primary": "#00658d",
+                        "primary-fixed-dim": "#81cfff",
+                        "on-secondary-container": "#9bbbe4",
+                        "surface": "#051424",
+                        "on-primary": "#00344b",
+                        "on-secondary-fixed-variant": "#28496c",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-variant": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "background": "#051424",
+                        "primary": "#81cfff",
+                        "tertiary-fixed-dim": "#ffb95a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-primary-fixed": "#001e2d",
+                        "on-primary-fixed-variant": "#004c6b",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#001d36",
+                        "primary-container": "#29b6f6",
+                        "tertiary": "#ffb95a",
+                        "on-tertiary-container": "#5a3800",
+                        "secondary-container": "#2a4b6e",
+                        "on-primary-container": "#004460",
+                        "inverse-on-surface": "#233143",
+                        "secondary-fixed-dim": "#a9c9f3",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "on-background": "#d4e4fa",
+                        "outline-variant": "#3e4850",
+                        "tertiary-container": "#e99a19",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "section-label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "metric-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "section-label": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0A2540; color: #d4e4fa; }
+        .micro-grid { background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px; }
+        .card-surface { background-color: #12314E; border: 1px solid #1E4369; }
+        .card-hover:hover { background-color: #1A3F64; }
+    </style>
+</head>
+<body class="font-body-md text-body-md h-screen w-screen overflow-hidden flex bg-[#0A2540]">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-[240px] bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant z-50">
+<div class="p-4 border-b border-outline-variant flex items-center gap-3">
+<img alt="Jill" class="w-10 h-10 rounded-full border-2 border-primary" data-alt="A polished, modern corporate avatar portrait of a professional AI assistant named Jill. She has a subtle, friendly expression. The lighting is high-contrast, dramatic studio lighting. The background is a dark, sleek gradient that matches a high-tech, data-first dark mode UI. The overall aesthetic is clean, authoritative, and intelligent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjGflsjPZ-yrWKFKtJ19SZsKlHdRHTbn7THYD-9laglpb_cnPHt34906V88OmDT3caKLjNz0zRHPxKF3vETzK5szc_Ahl46cflFZcTt1SeLGo8g_pLxKBSgNOSMl21SgbOngrm_sKNNuqNqHpQOB6zJVFG2m_LI7RYQ53yLvuhB5AIB8dkzb0MxjeD7RI1F1cnr-dJ0ntk1RYcB0MRBvotYB5tZkfbEla1tize9uqerqNDQiRp6QjG00ZSp-AOFZuBHa32QbfmYdQ0"/>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary text-[16px] leading-tight">Jill</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">AI-Assisted Expert</div>
+</div>
+</div>
+<div class="flex flex-col h-full overflow-y-auto py-2">
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">add_circle</span>
+                New Request
+            </a>
+<a class="flex items-center text-primary font-bold border-l-4 border-primary bg-secondary-container/20 px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">request_quote</span>
+                Active RFQs
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">compare_arrows</span>
+                Quote Comparisons
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">fact_check</span>
+                Approvals
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+                Vendors
+            </a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors px-4 py-3 cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">history</span>
+                Activity Log
+            </a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="hidden md:flex fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-dim dark:bg-surface-dim border-b border-outline-variant justify-between items-center px-gutter z-40 micro-grid">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-black text-primary">Jill Procurement</div>
+<div class="relative w-64 ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-[#081B2E] border border-[#1E4369] text-on-surface rounded-lg pl-10 pr-4 py-1.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm" placeholder="Search RFQs, Vendors..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 p-2">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Jill Avatar" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer" data-alt="A polished, modern corporate avatar portrait of a professional AI assistant named Jill. She has a subtle, friendly expression. The lighting is high-contrast, dramatic studio lighting. The background is a dark, sleek gradient that matches a high-tech, data-first dark mode UI. The overall aesthetic is clean, authoritative, and intelligent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6d1OS3_jKqCDiRM0Uy5Pxe3gcUfJ5mD_o1pJIXOvt1QjzxU0qtqGfrbUlTePWt0AP3cyjvuig71CK1GWbelvzlC3doJBAMcatuyIqPCevd_WoUKaq2L5NMv4NJOKr4VjFnAdj2z4BAiujvl4hkDZg345zH4KsoPsP6zCrBOFm6s6Zu0QdhIP6c41tWnipEg2gk5jDzYP5rRcE4EXpCgSqaMXuhZZjHq2_dQbwzpqGX5Bcvn4x5ydGvkWRAaRuuaNi-jqLR7dI9-Du"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-[240px] mt-16 p-margin overflow-y-auto flex gap-margin">
+<div class="flex-1 flex flex-col gap-6">
+<!-- Header & Stepper -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span>Active RFQs</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>RFQ-1052</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Select Vendors</span>
+</div>
+</div>
+<!-- Stepper -->
+<div class="flex items-center justify-between max-w-2xl bg-[#12314E] p-3 rounded-lg border border-[#1E4369]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="w-6 h-6 rounded-full bg-[#1E4369] flex items-center justify-center text-xs">1</div>
+<span class="text-xs font-medium">Details</span>
+</div>
+<div class="w-8 h-px bg-[#1E4369]"></div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="w-6 h-6 rounded-full bg-[#1E4369] flex items-center justify-center text-xs">2</div>
+<span class="text-xs font-medium">Items</span>
+</div>
+<div class="w-8 h-px bg-[#1E4369]"></div>
+<div class="flex items-center gap-2 text-primary">
+<div class="w-6 h-6 rounded-full bg-primary text-[#00344b] flex items-center justify-center text-xs font-bold">3</div>
+<span class="text-xs font-medium">Select Vendors</span>
+</div>
+<div class="w-8 h-px bg-[#1E4369]"></div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="w-6 h-6 rounded-full bg-[#1E4369] flex items-center justify-center text-xs">4</div>
+<span class="text-xs font-medium">Review</span>
+</div>
+<div class="w-8 h-px bg-[#1E4369]"></div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="w-6 h-6 rounded-full bg-[#1E4369] flex items-center justify-center text-xs">5</div>
+<span class="text-xs font-medium">Send</span>
+</div>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Jill found 6 qualified suppliers for RFQ-1052 — LED High-Bay Fixtures</h1>
+</div>
+<!-- AI Recommendation Banner -->
+<div class="bg-primary/10 border border-primary/30 rounded-lg p-4 flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div>
+<h3 class="text-primary font-medium mb-1">Jill recommends the 3 highlighted vendors</h3>
+<p class="text-sm text-on-surface-variant">Based on your historical spend, 94%+ on-time delivery rates, and active compliance certificates for LED fixtures. Selecting these 3 maximizes competitive pricing while minimizing risk.</p>
+</div>
+</div>
+<!-- Vendor Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+<!-- Card 1 (Checked) -->
+<div class="card-surface rounded-lg p-container-padding border-2 border-primary relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00344b] text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeBp0_reWBT1_XmN0A6aw2LSht7Vlmh_UmIgDmyDm6oL1MX9PQs5Pq5-9AT6nGiDqsBUsAxhBKvEMrH78ZosTbZAT5-nYTI3bgjVAtlbm0RCZee0g5e6876cTbL0I7fIVPn3FKCyQ8SHTTF-tvfss72D2ZyBh1dtp58rSHeF5h3MKVPHpzZAJDzrCTYKvieb3G1Pgm2ZRrNAMWQkwmZRR05_bckz86GHk0PMy8JEdGwyT1Vjgft47VUDW3WXcpN3w2VYcTEKYqjQo4"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">LumenMax Lighting</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-secondary-container text-secondary">Vendor Master</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">4.8</span>
+<span class="mx-1">•</span>
+<span>On-time 98%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369]">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$142,500</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#0f5223]/30 text-[#4ade80] text-xs border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Approved
+                            </span>
+</div>
+</div>
+</div>
+<!-- Card 2 (Checked) -->
+<div class="card-surface rounded-lg p-container-padding border-2 border-primary relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00344b] text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7QsYyihyuC_O7LYMAJItEcjEojDi16Fqbj8eFWkg2NEt0sg5d3sssDFGu0jG0YXS4CfqhU6j8Fj8aOqURdooRRVD5jcd38LVcr9QIOOxG1_f_symbLqdsLVPW7EnM0PJOYL-o3Eb1usHCNKa2LVBVqWTnHsFXtqOjCagRBO2DR5S_-uPVFah_5S_tcanVbXi7WEyW3Ta029U2CBtDCRtfXahM-LgmpH16SBuoyx_EyxofSvP7zr1tx_9LtMMQvWTAuTNowYereshG"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">BrightWay Industrial</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-secondary-container text-secondary">Vendor Master</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">4.6</span>
+<span class="mx-1">•</span>
+<span>On-time 95%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369]">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$89,200</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#0f5223]/30 text-[#4ade80] text-xs border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Approved
+                            </span>
+</div>
+</div>
+</div>
+<!-- Card 3 (Checked) -->
+<div class="card-surface rounded-lg p-container-padding border-2 border-primary relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00344b] text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPnRs08J2vzexQ0T9DbBAmONLJkmLgf462JyPvRMDwpgsB4B1ovtxGNltUlGYYZFLtpzG_XLCbvF2d2APwsMHQfPWzAs8QTiPSyFhHiOtlDgQpLE2sAYzYK5AX0qULTFHbS0D11kTNafAJLpA15ZxInj1Klql66Ba7tY9qoP-gqkWGmOdKDIKuf9Q1aSK5CIqAXgHQu-9RUjESwh7inlDNSLyfaChZHIuPS1fwbzCOns7mZU2Fk3nhswwWpaJItX1lp7IeZqxlmb6V"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">EcoLight Solutions</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">External</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">4.4</span>
+<span class="mx-1">•</span>
+<span>On-time 92%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369]">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$12,000</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#0f5223]/30 text-[#4ade80] text-xs border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Approved
+                            </span>
+</div>
+</div>
+</div>
+<!-- Card 4 (Unchecked) -->
+<div class="card-surface rounded-lg p-container-padding relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-[#1E4369] bg-[#081B2E]"></div>
+</div>
+<div class="flex items-start gap-4 mb-4 opacity-80">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRzztmxAxBVGpKKoTDmm9DAEBgFzFhtshO0NNT-Tg5UA03YnndhHTxJqmzYIc4VeMOp2wu5wfPNC4PExOjpobuZJigK61IKgxqtXrqiQbAf4ooPRRG5_OmuXRvUj-6WZ-zvJgIc1Y5pIzj78am11nDxp_NFBwLWwHdIiwv7Ogd3k6FuVmWrTCrtNIFCfp81NB4H_eA4rZG6NFr3KjOyKP7Jhd3PINXiu3AytbwEOSvK-J91n9cTx38XEeO7zUoRRYfWgf9X23XsVlN"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">Industrial Illumination Co.</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-secondary-container text-secondary">Vendor Master</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">3.9</span>
+<span class="mx-1">•</span>
+<span>On-time 85%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369] opacity-80">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$34,000</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#5a3800]/30 text-[#ffb95a] text-xs border border-[#ffb95a]/20">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                Expires soon
+                            </span>
+</div>
+</div>
+</div>
+<!-- Card 5 (Unchecked) -->
+<div class="card-surface rounded-lg p-container-padding relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-[#1E4369] bg-[#081B2E]"></div>
+</div>
+<div class="flex items-start gap-4 mb-4 opacity-80">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcnMadOOPHoX6aC3W6Sy8LB87a4F3Uvkr9CwJHJkZ8uGjQzfCGcjGHKFOdh6brotsmIEJM1haINT2dzM9RT_gQCP9jl5rzoK2F3_zWd_Ypo0zXs0BLruE9ngEDAtSJ9oh50Am10W31Ckh-fjmigQIm7PoAuMolTS3IicpBxnJ_t--XEmOXLDsUkbIbo1LH00oMucRpTjUcvMlqsD19tKq1LdA5TwwNkf3xqFK9tFptDZij7OXUbSbgKjpPAcExCzvGtn1W74pV8SqW"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">Global Fixtures Ltd.</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">External</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">4.1</span>
+<span class="mx-1">•</span>
+<span>On-time 88%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369] opacity-80">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$0</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#0f5223]/30 text-[#4ade80] text-xs border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Approved
+                            </span>
+</div>
+</div>
+</div>
+<!-- Card 6 (Unchecked) -->
+<div class="card-surface rounded-lg p-container-padding relative cursor-pointer hover:bg-[#1A3F64] transition-colors">
+<div class="absolute top-4 right-4">
+<div class="w-5 h-5 rounded border border-[#1E4369] bg-[#081B2E]"></div>
+</div>
+<div class="flex items-start gap-4 mb-4 opacity-80">
+<div class="w-12 h-12 rounded bg-white flex items-center justify-center p-1">
+<img alt="Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDgfhIIIh1ZESannxI69Ej4omiQcbVRYXiLtqME2TQdchmbSK91thyZlYZnyHwh3WIROpO5JIVjidgW7zdqscUrZesOHz8VY5l1zXVLM1BH2mgy_2HgPMSQrEo2lnXc_p0GaESNYmOLE_6BZrqQomARpYtbXmjuchbmjP218BxKpPOZ8la8Sx8509ozpw10qLbc-xNrhvPlMkADjuagKYJpGOJWer-18JL9s18OVNScqRGwYu3gZLWloAPHYOjKSxP36wEAI5S-4t6"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-semibold text-on-surface text-base">ProLighting Supply</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-secondary-container text-secondary">Vendor Master</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium">4.0</span>
+<span class="mx-1">•</span>
+<span>On-time 89%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#1E4369] opacity-80">
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Past Spend (YTD)</div>
+<div class="text-on-surface font-medium">$18,500</div>
+</div>
+<div>
+<div class="font-section-label text-section-label text-on-surface-variant mb-1 uppercase">Compliance</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#0f5223]/30 text-[#4ade80] text-xs border border-[#4ade80]/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Approved
+                            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Rail (Action Context) -->
+<div class="w-[320px] flex-shrink-0 flex flex-col gap-4">
+<div class="card-surface rounded-lg p-container-padding sticky top-0">
+<h2 class="font-headline-md text-base font-semibold text-on-surface mb-4 border-b border-[#1E4369] pb-2">Selected for RFQ (3)</h2>
+<div class="flex flex-col gap-3 mb-6">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface">LumenMax Lighting</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] cursor-pointer hover:text-error transition-colors">close</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface">BrightWay Industrial</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] cursor-pointer hover:text-error transition-colors">close</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface">EcoLight Solutions</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] cursor-pointer hover:text-error transition-colors">close</span>
+</div>
+</div>
+<div class="bg-[#081B2E] rounded p-3 mb-6 border border-[#1E4369]">
+<div class="flex justify-between items-center mb-1">
+<span class="text-xs text-on-surface-variant">Estimated Response Rate</span>
+<span class="text-xs font-semibold text-primary">High</span>
+</div>
+<div class="w-full bg-[#12314E] rounded-full h-1.5 mt-2">
+<div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-[#00344b] font-semibold py-2.5 px-4 rounded hover:bg-[#4fc3f7] transition-colors flex items-center justify-center gap-2">
+                    Send RFQ to 3 vendors
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+<button class="w-full mt-3 bg-transparent border border-[#1E4369] text-on-surface font-medium py-2 px-4 rounded hover:bg-[#12314E] transition-colors">
+                    Save Draft
+                </button>
+</div>
+</div>
+</main>
+</body></html>

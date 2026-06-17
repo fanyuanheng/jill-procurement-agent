@@ -1,0 +1,4 @@
+body { background-color: #0A2540; color: #d4e4fa; }
+        .micro-grid { background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px; }
+        .card-surface { background-color: #12314E; border: 1px solid #1E4369; }
+        .card-hover:hover { background-color: #1A3F64; }

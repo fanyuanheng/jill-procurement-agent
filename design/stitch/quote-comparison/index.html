@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quote Comparison - RFQ-1052</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-surface-variant": "#bdc8d1",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary": "#0c3254",
+                        "surface-container": "#122131",
+                        "outline": "#87929b",
+                        "inverse-surface": "#d4e4fa",
+                        "secondary": "#a9c9f3",
+                        "surface-tint": "#81cfff",
+                        "on-tertiary": "#462a00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#c6e7ff",
+                        "inverse-primary": "#00658d",
+                        "primary-fixed-dim": "#81cfff",
+                        "on-secondary-container": "#9bbbe4",
+                        "surface": "#051424",
+                        "on-primary": "#00344b",
+                        "on-secondary-fixed-variant": "#28496c",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-variant": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "background": "#051424",
+                        "primary": "#81cfff",
+                        "tertiary-fixed-dim": "#ffb95a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-primary-fixed": "#001e2d",
+                        "on-primary-fixed-variant": "#004c6b",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#001d36",
+                        "primary-container": "#29b6f6",
+                        "tertiary": "#ffb95a",
+                        "on-tertiary-container": "#5a3800",
+                        "secondary-container": "#2a4b6e",
+                        "on-primary-container": "#004460",
+                        "inverse-on-surface": "#233143",
+                        "secondary-fixed-dim": "#a9c9f3",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "on-background": "#d4e4fa",
+                        "outline-variant": "#3e4850",
+                        "tertiary-container": "#e99a19",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "section-label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "metric-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "section-label": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .micro-grid {
+            background-size: 20px 20px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-surface-container-low border-r border-outline-variant flex flex-col overflow-y-auto z-50">
+<div class="p-4 flex items-center space-x-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-md text-headline-md font-bold">J</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">Jill</div>
+<div class="font-section-label text-section-label text-on-surface-variant">AI-Assisted Expert</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col space-y-1">
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">add_circle</span>
+<span>New Request</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">request_quote</span>
+<span>Active RFQs</span>
+</a>
+<a class="flex items-center text-primary font-bold border-l-4 border-primary bg-secondary-container/20 px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+<span>Quote Comparisons</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">fact_check</span>
+<span>Approvals</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+<span>Vendors</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">history</span>
+<span>Activity Log</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-[240px] h-full relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-dim border-b border-outline-variant flex justify-between items-center px-gutter z-40 micro-grid">
+<div class="flex items-center space-x-4">
+<div class="font-headline-md text-headline-md font-black text-primary">Jill Procurement</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-highest border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 font-body-md text-body-md" placeholder="Search RFQs, Vendors..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 p-2">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Jill Avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a corporate executive woman in a modern high-tech office setting. Dark background with subtle blue rim lighting indicating a digital environment. Medium shot, clear focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2nnIHH83D2sqZkzM495xBHcEWwPh-HZ6VaGuBUuk5UFNfFMwSlCg3otvkCT1t-bfO8MN3s9OR043W2IhMFasiyR3npKu0vYGRZY9Wf4x4L5qRBP0Ra4_EF4b7fYrq4_h8eXRPNgo21bK0NZre0ILvCJbVVEY0qU_ez_2_Mg3_Zc6omGV_bn54oIMFKT2uD3y4_xUZfuO__j8XeL9HyWoN7gLPe79gq_tuvgBISi2Wwjqot3FDWf1MsqkYxOjW5r856YjMVLPdT9qS"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto mt-16 p-margin bg-background relative z-10 pb-32">
+<!-- Stepper & Header -->
+<div class="mb-margin">
+<div class="flex items-center space-x-4 mb-6">
+<div class="flex items-center space-x-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface">1</span>
+<span>Draft</span>
+<div class="w-8 h-[1px] bg-outline-variant"></div>
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface">2</span>
+<span>Sourcing</span>
+<div class="w-8 h-[1px] bg-outline-variant"></div>
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-on-primary font-bold">3</span>
+<span class="text-primary font-bold">Compare</span>
+<div class="w-8 h-[1px] bg-outline-variant"></div>
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface">4</span>
+<span>Approval</span>
+<div class="w-8 h-[1px] bg-outline-variant"></div>
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface">5</span>
+<span>Award</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">RFQ-1052 — 4 quotes received & normalized</h1>
+<p class="text-on-surface-variant font-body-md text-body-md">Standardizing variables for 500x Enterprise Laptops to ensure apples-to-apples comparison.</p>
+</div>
+</div>
+</div>
+<!-- Jill's Recommendation Box -->
+<div class="bg-surface-container border border-primary/50 rounded-lg p-container-padding mb-margin relative overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl text-primary">psychology</span>
+</div>
+<div class="flex items-start space-x-4 relative z-10">
+<div class="p-2 bg-primary-container/20 rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold mb-2 text-lg">Jill's Recommendation</h3>
+<p class="text-on-surface font-body-md text-body-md leading-relaxed max-w-3xl">
+<strong>Vendor C (TechCorp Solutions)</strong> presents the highest total value despite a slightly higher unit price. Their comprehensive 3-year warranty and guaranteed 2-week lead time offset the 2% premium over Vendor A. Vendor A's 6-week lead time poses a high risk to your Q3 deployment schedule. I recommend proceeding with Vendor C.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Comparison Table -->
+<div class="bg-surface-container border border-outline-variant rounded-lg overflow-x-auto shadow-sm">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-high/50">
+<th class="p-4 font-section-label text-section-label text-on-surface-variant w-[20%]">CRITERIA</th>
+<th class="p-4 w-[20%] border-l border-outline-variant/30">
+<div class="flex items-center space-x-3 mb-2">
+<div class="w-8 h-8 bg-surface-bright rounded flex items-center justify-center font-bold text-on-surface">A</div>
+<span class="font-bold">Global IT Direct</span>
+</div>
+</th>
+<th class="p-4 w-[20%] border-l border-outline-variant/30">
+<div class="flex items-center space-x-3 mb-2">
+<div class="w-8 h-8 bg-surface-bright rounded flex items-center justify-center font-bold text-on-surface">B</div>
+<span class="font-bold">SysNet Pro</span>
+</div>
+</th>
+<th class="p-4 w-[20%] border-x-2 border-primary bg-primary/5 relative">
+<div class="absolute -top-[12px] left-1/2 -translate-x-1/2 bg-primary text-on-primary font-section-label text-section-label px-3 py-1 rounded-full whitespace-nowrap shadow-md border border-primary-container z-20 flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span>JILL'S PICK</span>
+</div>
+<div class="flex items-center space-x-3 mb-2 mt-2">
+<div class="w-8 h-8 bg-primary-container text-on-primary-container rounded flex items-center justify-center font-bold">C</div>
+<span class="font-bold text-primary">TechCorp Sol</span>
+</div>
+</th>
+<th class="p-4 w-[20%] border-l border-outline-variant/30">
+<div class="flex items-center space-x-3 mb-2">
+<div class="w-8 h-8 bg-surface-bright rounded flex items-center justify-center font-bold text-on-surface">D</div>
+<span class="font-bold">Enterprise HW</span>
+</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Unit Price</td>
+<td class="p-4 border-l border-outline-variant/30">
+<div class="flex items-center text-primary-container">
+<span>$1,195.00</span>
+<span class="material-symbols-outlined text-[16px] ml-1">arrow_downward</span>
+</div>
+</td>
+<td class="p-4 border-l border-outline-variant/30">$1,210.00</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5 font-medium">$1,220.00</td>
+<td class="p-4 border-l border-outline-variant/30 text-on-surface-variant">$1,250.00</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Quantity</td>
+<td class="p-4 border-l border-outline-variant/30">500</td>
+<td class="p-4 border-l border-outline-variant/30">500</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5">500</td>
+<td class="p-4 border-l border-outline-variant/30">500</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Total Price</td>
+<td class="p-4 border-l border-outline-variant/30">$597,500.00</td>
+<td class="p-4 border-l border-outline-variant/30">$605,000.00</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5">$610,000.00</td>
+<td class="p-4 border-l border-outline-variant/30">$625,000.00</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Lead Time</td>
+<td class="p-4 border-l border-outline-variant/30">
+<div class="flex items-center text-tertiary">
+<span class="material-symbols-outlined text-[16px] mr-1">warning</span>
+<span>6 weeks</span>
+</div>
+</td>
+<td class="p-4 border-l border-outline-variant/30">4 weeks</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5">
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-[16px] mr-1">bolt</span>
+<span class="font-bold">2 weeks</span>
+</div>
+</td>
+<td class="p-4 border-l border-outline-variant/30">3 weeks</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Warranty</td>
+<td class="p-4 border-l border-outline-variant/30">1 Year Limited</td>
+<td class="p-4 border-l border-outline-variant/30">1 Year + NBD</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5 text-primary-container font-medium">3 Years ProSupport</td>
+<td class="p-4 border-l border-outline-variant/30">2 Years Limited</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Payment Terms</td>
+<td class="p-4 border-l border-outline-variant/30">Net 30</td>
+<td class="p-4 border-l border-outline-variant/30">Net 45</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5">Net 60</td>
+<td class="p-4 border-l border-outline-variant/30">Net 30</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="p-4 text-on-surface-variant font-medium">Compliance Check</td>
+<td class="p-4 border-l border-outline-variant/30">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-bright text-on-surface text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span> Pass
+                                </span>
+</td>
+<td class="p-4 border-l border-outline-variant/30">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-bright text-on-surface text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span> Pass
+                                </span>
+</td>
+<td class="p-4 border-x-2 border-primary bg-primary/5">
+<span class="inline-flex items-center px-2 py-1 rounded bg-primary/20 text-primary-container text-xs font-medium border border-primary/30">
+<span class="material-symbols-outlined text-[12px] mr-1">verified</span> Platinum
+                                </span>
+</td>
+<td class="p-4 border-l border-outline-variant/30">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-bright text-on-surface text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span> Pending
+                                </span>
+</td>
+</tr>
+<tr class="bg-surface-container-high/80 border-t border-outline-variant font-bold text-on-surface">
+<td class="p-4 uppercase font-section-label text-section-label tracking-wider">Normalized Total</td>
+<td class="p-4 border-l border-outline-variant/30 text-lg">$622,500.00<span class="block text-xs font-normal text-tertiary mt-1">+Risk Adj.</span></td>
+<td class="p-4 border-l border-outline-variant/30 text-lg">$615,000.00</td>
+<td class="p-4 border-x-2 border-primary bg-primary/10 text-lg text-primary">$610,000.00<span class="block text-xs font-normal text-primary mt-1">Best Value</span></td>
+<td class="p-4 border-l border-outline-variant/30 text-lg">$630,000.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 right-0 w-[calc(100%-240px)] bg-surface border-t border-outline-variant p-4 flex justify-end items-center space-x-4 z-40 shadow-[0_-4px_24px_rgba(0,0,0,0.5)]">
+<button class="px-6 py-2 rounded font-body-md text-body-md font-medium border border-primary-container text-primary-container hover:bg-primary-container/10 transition-colors">
+                Request revised quote
+            </button>
+<button class="px-6 py-2 rounded font-body-md text-body-md font-bold bg-primary-container text-on-primary-container hover:bg-primary-fixed transition-colors shadow-sm flex items-center space-x-2">
+<span>Send to approval</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</body></html>
