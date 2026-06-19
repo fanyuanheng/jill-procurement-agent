@@ -37,9 +37,10 @@ describe("shared shell", () => {
     expect(screen.queryByRole("button", { name: /Approvals/ })).not.toBeInTheDocument();
     expect(screen.getByRole("searchbox", { name: "Search Jill workspace" })).toBeInTheDocument();
     expect(screen.getByLabelText("Buyer avatar")).toBeInTheDocument();
+    expect(screen.getByLabelText("Active LLM model")).toHaveTextContent("local qwen3.6:27b-64k");
     expect(screen.getByText("jill@agentmail.to")).toBeInTheDocument();
     expect(screen.getByText("12 email actions")).toBeInTheDocument();
-    expect(screen.getByText("qwen3.6:27b-64k")).toBeInTheDocument();
+    expect(screen.getAllByText("qwen3.6:27b-64k").length).toBeGreaterThan(0);
     expect(screen.getByText("local model")).toBeInTheDocument();
     expect(screen.getByText("Dashboard content")).toBeInTheDocument();
   });

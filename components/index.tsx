@@ -157,6 +157,17 @@ export function AppShell({
             <div className="flex items-center gap-3 text-white">
               <AgentBadge label="Jill" />
               <span className="hidden text-label-sm text-stitch-text-muted sm:inline">AI Procurement Agent</span>
+              {llmStatus ? (
+                <span
+                  aria-label="Active LLM model"
+                  className="hidden max-w-[260px] items-center gap-1 rounded-full border border-[#29b6f6]/30 bg-[#29b6f6]/10 px-2.5 py-1 text-[11px] font-medium text-[#81cfff] sm:inline-flex"
+                  title={`${llmStatus.provider} ${llmStatus.model} at ${llmStatus.baseUrl}`}
+                >
+                  <span className="text-stitch-text-muted">{llmStatus.provider}</span>
+                  {" "}
+                  <span className="truncate">{llmStatus.model}</span>
+                </span>
+              ) : null}
             </div>
             <div className="flex flex-1 items-center gap-3 md:max-w-xl">
               <label className="relative flex-1">
